@@ -2,12 +2,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 const mongoose = require('mongoose')
-//const morgan = require('morgan');
+const morgan = require('morgan');
 
 const DB_LOCAL = 'mongodb+srv://issue-tracker:issue-tracker@issue-tracker-tx3vl.mongodb.net/test?retryWrites=true&w=majority';
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-//app.use(morgan('combined'));
+app.use(morgan('combined'));
 
 //Connecting to our mongodb database
 mongoose.connect(DB_LOCAL)
@@ -67,6 +67,61 @@ app.get('/user/:id', (req, res, next) => {
         res.json(result);
     })
 })
+
+// edit user by id 
+app.put('/user', (req, res, next) => {
+    UserModel.update({
+        _id: req.body.id
+    },{
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password
+    }, (err, result) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.json(result);
+    })
+})
+
+////////////////////LOGIN AUTHENTICATED
+
+
+  app.post('/user/login',(req, res) => {
+    let userEmail = req.body.email;
+    let userPassword = req.body.password;
+
+    UserModel.findOne({ email: userEmail}, (err,result) => {
+        if(err){
+            console.log(err);
+            return;
+        }
+        if(result == null){
+            res.json({
+                message: "User does not exist",
+                loggedIn: false
+            })
+            return;
+        }
+        if(userPassword == result.password){
+            res.json({
+                message: 'logged in successfuly',
+                loggedIn: true
+            })
+            return;
+        }
+        res.json({
+            message: 'Email or password incorrect',
+            loggedIn: false
+        })
+    })
+  });
+
+
+
+
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
