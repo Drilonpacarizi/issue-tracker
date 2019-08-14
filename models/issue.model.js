@@ -14,5 +14,5 @@ const IssueSchema = new Schema({
     resolved_at: Date
 })
 
-const Issue = mongoose.model('Issue',IssueSchema);
-module.exports = Issue; 
+const Issue = mongoose.model('Issue', IssueSchema);
+module.exports = Issue;
