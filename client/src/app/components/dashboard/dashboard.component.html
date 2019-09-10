@@ -39,13 +39,13 @@
         {{ item.title }}
       </td>
       <td>
-        {{ item.created_at }}
+        {{ item.created_at | date : "dd.MM.y"}}
       </td>
       <td>
         {{ item.resolved ? "Yes" : "No" }}
       </td>
       <td>
-        {{ item.resolved_at }}
+        {{ item.resolved_at  | date : "dd.MM.y"}}
       </td>
       <td>
         <button (click)="updateIssue(item._id)" class="btn btn-secondary">
