@@ -1,0 +1,60 @@
+<div class="container">
+  <h1>Issues</h1>
+  <div class="input-group mb-3">
+    <input
+      id="issueTitle"
+      type="text"
+      class="form-control"
+      [(ngModel)]="title"
+      placeholder="Issue Title"
+    />
+    <div class="input-group-append">
+      <button
+        (click)="createIssue()"
+        class="btn btn-outline-secondary"
+        type="button"
+        id="addIssue"
+      >
+        Add Issue
+      </button>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Resolved</th>
+        <th scope="col">Resolved At</th>
+        <th scope="col">Resolve</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody id="table" *ngFor="let item of issues; let i = index">
+      <td>
+        {{ i + 1 }}
+      </td>
+      <td>
+        {{ item.title }}
+      </td>
+      <td>
+        {{ item.created_at }}
+      </td>
+      <td>
+        {{ item.resolved ? "Yes" : "No" }}
+      </td>
+      <td>
+        {{ item.resolved_at }}
+      </td>
+      <td>
+        <button (click)="updateIssue(item._id)" class="btn btn-secondary">
+          Resolve
+        </button>
+      </td>
+      <td>
+        <button (click)="deleteIssue(item._id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tbody>
+  </table>
+</div>
