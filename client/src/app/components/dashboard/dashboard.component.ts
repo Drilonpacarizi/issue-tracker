@@ -13,11 +13,10 @@ import { Issue } from '../../models/Issue';
 export class DashboardComponent implements OnInit {
 
   issues: Issue[];
-  test: "ardi";
+  
   title: string;
 
   constructor(
-    // private issueService: IssueService, private router: Router
   ) { }
   url = 'http://localhost:3000/';
 
@@ -26,16 +25,14 @@ export class DashboardComponent implements OnInit {
     this.getIssues();
   }
   getIssues() {
-    // this.issueServicke.getIssues().subscribe((issues) => {
-    // console.log(issues.data)
-    // })
+   
 
     axios.get(this.url + 'issue')
       .then(res => {
         console.log(res.data);
         this.issues = res.data;
         console.log(this.issues[0])
-        // console.log(res.data[0].created_at);
+        
       })
       .catch(err => {
         console.log(err);
@@ -52,7 +49,7 @@ export class DashboardComponent implements OnInit {
       console.log(res.data);
       this.getIssues();
 
-      // console.log(res.data[0].created_at);
+      
     })
       .catch(err => {
         console.log(err);
@@ -67,7 +64,7 @@ export class DashboardComponent implements OnInit {
       console.log(res.data);
       this.getIssues();
       this.title = "";
-      // console.log(res.data[0].created_at);
+      
     })
       .catch(err => {
         console.log(err);
@@ -78,7 +75,7 @@ export class DashboardComponent implements OnInit {
     axios.delete(this.url + 'issue/' + id).then(res => {
       console.log(res.data);
       this.getIssues();
-      // console.log(res.data[0].created_at);
+      
     })
       .catch(err => {
         console.log(err);

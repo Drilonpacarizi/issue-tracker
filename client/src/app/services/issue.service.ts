@@ -14,8 +14,6 @@ export class IssueService {
   ) { }
 
   getIssues() {
-    console.log('a je tuj hi???')
-    console.log("get method", this.http.get(`${this.uri}/issue`));
     return this.http.get(`${this.uri}/issue`);
 
   }
