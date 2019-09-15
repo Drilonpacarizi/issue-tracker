@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import axios from 'axios';
 import { Router } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements AfterViewInit {
   
+  //@ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   constructor(
     private router: Router
@@ -25,7 +28,8 @@ export class AuthComponent implements OnInit {
   passwordLogin: ''
 
   url = 'http://localhost:3000/';
-  ngOnInit() {
+  ngAfterViewInit() {
+
   }
 
   createUser(){
@@ -70,6 +74,7 @@ export class AuthComponent implements OnInit {
       console.log(err);
     });
   }
+  
 
 
 
