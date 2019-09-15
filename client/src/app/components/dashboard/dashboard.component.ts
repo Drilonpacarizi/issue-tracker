@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import axios from "axios";
 import { Router } from '@angular/router'
 
+
 import { IssueService } from '../../services/issue.service';
 import { Issue } from '../../models/Issue';
 @Component({
@@ -17,11 +18,11 @@ export class DashboardComponent implements OnInit {
   title: string;
 
   constructor(
+    
   ) { }
   url = 'http://localhost:3000/';
 
   ngOnInit() {
-    console.log('pse')
     this.getIssues();
   }
   getIssues() {
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
       });
   }
   updateIssue(id) {
-    console.log(id + "driloni")
+    //console.log(id + "drilon")
 
 
     let obj = {

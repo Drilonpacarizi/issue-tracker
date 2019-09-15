@@ -5,15 +5,66 @@
           <h1>Sign Up</h1>
           <div class="form-group">
               <label  for="email">Email Address</label>
-              <input [(ngModel)]="email" type="email" class="form-control" id="email" placeholder="Enter email">
+              <input [(ngModel)]="email" 
+              type="email" 
+              class="form-control" 
+              id="email" 
+              #regEmail="ngModel"
+              [ngClass]="{'is-invalid':regEmail.errors && regEmail.touched}"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              placeholder="Enter email"
+              required
+              >
+              <div [hidden]="!regEmail.errors?.required" class="invalid-feedback">
+                Email required
+              </div>
+              <div [hidden]="!regEmail.errors?.pattern" class="invalid-feedback">
+                Email is not valid
+            </div>
           </div>
+          
+
           <div class="form-group">
               <label for="firstName">First Name</label>
-              <input [(ngModel)]="firstName"  type="text" class="form-control" id="firstName" placeholder="Enter First Name">
+              <input [(ngModel)]="firstName"  
+              type="text" class="form-control" 
+              id="firstName" 
+              #fname="ngModel"
+              placeholder="Enter First Name"
+              [ngClass]="{'is-invalid':fname.errors && fname.touched  }"
+              minlength="2"
+              required
+              >
+              <div [hidden]="!fname.errors?.required" class="invalid-feedback">
+                First name required
+              </div>
+              <div [hidden]="!fname.errors?.minlength" class="invalid-feedback">
+                Must be at least 2 characters
+            </div>
+    
           </div>
+          
+
           <div class="form-group">
               <label for="lastName">Last Name</label>
-              <input [(ngModel)]="lastName"  type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
+              <input [(ngModel)]="lastName"  
+              type="text" 
+              class="form-control" 
+              id="lastName" 
+              #lname="ngModel"
+              placeholder="Enter Last Name"
+              [ngClass]="{'is-invalid':lname.errors && lname.touched}"
+              minlength="2"
+                required
+              >
+              <div [hidden]="!lname.errors?.required" class="invalid-feedback">
+                Last name required
+              </div>
+      
+              <div [hidden]="!lname.errors?.minlength" class="invalid-feedback">
+                  Must be at least 2 characters
+              </div>
+
           </div>
           <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
@@ -30,7 +81,20 @@
           <h1>Log In</h1>
           <div class="form-group">
               <label  for="email">Email Address</label>
-              <input [(ngModel)]="emailLogin" type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+              <input [(ngModel)]="emailLogin" type="email" class="form-control" id="loginEmail" placeholder="Enter email"
+              #logEmail="ngModel"
+              [ngClass]="{'is-invalid':logEmail.errors && logEmail.touched}"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              placeholder="Enter email"
+              required
+              >
+              <div [hidden]="!logEmail.errors?.required" class="invalid-feedback">
+                Email required
+              </div>
+      
+              <div [hidden]="!logEmail.errors?.pattern" class="invalid-feedback">
+                  Email is not valid
+              </div>
           </div>
           <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
